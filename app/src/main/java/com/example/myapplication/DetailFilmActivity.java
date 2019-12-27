@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myapplication.database.AppDatabase;
 import com.example.myapplication.model.FilmModel;
 import com.squareup.picasso.Picasso;
 
@@ -23,7 +24,7 @@ public class DetailFilmActivity extends AppCompatActivity {
     public static String DATA_FILM = "data_film";
     TextView tvNamaFilm, tvKeterangan;
     ImageView imgDetailFilm;
-    // AppDatabase db;
+    AppDatabase db;
     Button btnSaveFavorit;
     String img, namaFilm, keterangan, id;
 
@@ -38,13 +39,13 @@ public class DetailFilmActivity extends AppCompatActivity {
         btnSaveFavorit = findViewById(R.id.btn_save_favorit);
 
         // initiate pemanggilan Room database
-        // db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "FAVORITE").build();
+        db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "FAVORITE").build();
 
         Intent intent = getIntent();
         FilmModel data = intent.getParcelableExtra(DATA_FILM);
 
         img = data.getPoster();
-        id = data.getId();
+        id = String.valueOf(data.getId());
         namaFilm = data.getNama_film();
         keterangan = data.getKeterangan();
 
@@ -58,36 +59,35 @@ public class DetailFilmActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 FilmModel film = new FilmModel(namaFilm, keterangan, img);
-               // insertData(film);
+                insertData(film);
             }
 
-//            private void insertData(final FilmModel wisata) {
-//                new AsyncTask<Void, Void, Long>() {
-//                    @Override
-//                    protected Long doInBackground(Void... voids) {
-//                        // melakukan proses insert data
-////                        long status = db.favoriteDao().insertFav(wisata);
-////                        return status;
-//                    }
-//
-//                    @Override
-//                    protected void onPostExecute(Long status) {
-//                        Toast.makeText(DetailFilmActivity.this, "Insert data berhasil " + status, Toast.LENGTH_SHORT).show();
-//                        sendPushNotification();
-//                    }
-//
-//                    private void sendPushNotification() {
-//                        NotificationManager notif=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-//                        Notification notify=new Notification.Builder
-//                                (getApplicationContext()).setContentTitle("data telah masuk").setContentText("data telah masuk").
-//                                setContentTitle("data telah masuk").setSmallIcon(R.drawable.ic_archive_black_24dp).build();
-//
-//                        notify.flags |= Notification.FLAG_AUTO_CANCEL;
-//                        notif.notify(0, notify);
-//
-//                    }
-//                }.execute();
-//            }
+            private void insertData(final FilmModel wisata) {
+                new AsyncTask<Void, Void, Long>() {
+                    @Override
+                    protected Long doInBackground(Void... voids) {
+                        long status = db.favoriteDao().insertFav(wisata);
+                        return status;
+                    }
+
+                    @Override
+                    protected void onPostExecute(Long status) {
+                        Toast.makeText(DetailFilmActivity.this, "Insert data berhasil " + status, Toast.LENGTH_SHORT).show();
+                        sendPushNotification();
+                    }
+
+                    private void sendPushNotification() {
+                        NotificationManager notif=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+                        Notification notify=new Notification.Builder
+                                (getApplicationContext()).setContentTitle("data telah masuk").setContentText("data telah masuk").
+                                setContentTitle("data telah masuk").setSmallIcon(R.drawable.ic_archive_black_24dp).build();
+
+                        notify.flags |= Notification.FLAG_AUTO_CANCEL;
+                        notif.notify(0, notify);
+
+                    }
+                }.execute();
+            }
         });
 
 

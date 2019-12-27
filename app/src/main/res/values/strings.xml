@@ -6,4 +6,5 @@
     <string name="list_film">List Film</string>
     <string name="dashboard">Dashboard</string>
     <string name="detail_film">Detail Film</string>
+    <string name="simpan">Simpan</string>
 </resources>

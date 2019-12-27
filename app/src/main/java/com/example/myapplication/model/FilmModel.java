@@ -3,24 +3,32 @@ package com.example.myapplication.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class FilmModel implements Parcelable {
+
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+    @ColumnInfo(name = "nama_film")
+    private String nama_film;
+    @ColumnInfo(name = "keterangan")
+    private String keterangan;
+    @ColumnInfo(name = "poster")
+    private String poster;
 
     public FilmModel(String nama_film, String keterangan, String poster) {
         this.nama_film = nama_film;
         this.keterangan = keterangan;
         this.poster = poster;
     }
-    private String keterangan;
 
-    private String id;
-
-    private String nama_film;
-
-    private String poster;
 
     protected FilmModel(Parcel in) {
         keterangan = in.readString();
-        id = in.readString();
+        id = Integer.valueOf(in.readString());
         nama_film = in.readString();
         poster = in.readString();
     }
@@ -28,7 +36,7 @@ public class FilmModel implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(keterangan);
-        dest.writeString(id);
+        dest.writeString(String.valueOf(id));
         dest.writeString(nama_film);
         dest.writeString(poster);
     }
@@ -55,17 +63,19 @@ public class FilmModel implements Parcelable {
         return keterangan;
     }
 
+
+
     public void setKeterangan (String keterangan)
     {
         this.keterangan = keterangan;
     }
 
-    public String getId ()
+    public int getId ()
     {
         return id;
     }
 
-    public void setId (String id)
+    public void setId (int id)
     {
         this.id = id;
     }
