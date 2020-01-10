@@ -24,10 +24,8 @@ import static com.example.myapplication.DetailFilmActivity.DATA_FILM;
 
 
 public class FilmAdapter extends RecyclerView.Adapter<FilmAdapter.CustomViewHolder> {
-
     private List<FilmModel> dataList;
     private Context context;
-
     public FilmAdapter(Context context, List<FilmModel> dataList) {
         this.context = context;
         this.dataList = dataList;
@@ -72,7 +70,6 @@ public class FilmAdapter extends RecyclerView.Adapter<FilmAdapter.CustomViewHold
         CustomViewHolder(View itemView) {
             super(itemView);
             mView = itemView;
-
             txtFilm = mView.findViewById(R.id.tv_nama_film);
             txtKeterangan = mView.findViewById(R.id.tv_keterangan);
             coverImage = mView.findViewById(R.id.coverImage);
