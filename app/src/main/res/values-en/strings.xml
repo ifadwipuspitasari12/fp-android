@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="text_film">Movie</string>
+    <string name="text_simpan">Save</string>
+    <string name="text_pengaturan">Setting</string>
+    <string name="list_film">List Movie</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="detail_film">Detail Movie</string>
+    <string name="simpan">Save</string>
+</resources>

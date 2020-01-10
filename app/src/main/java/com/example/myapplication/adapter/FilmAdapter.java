@@ -54,7 +54,7 @@ public class FilmAdapter extends RecyclerView.Adapter<FilmAdapter.CustomViewHold
         });
         String img = dataList.get(position).getPoster();
 
-        Picasso.get().load(img).into(holder.coverImage);
+        a.coverImage);
 
     }
 
@@ -64,13 +64,11 @@ public class FilmAdapter extends RecyclerView.Adapter<FilmAdapter.CustomViewHold
     }
 
     class CustomViewHolder extends RecyclerView.ViewHolder {
-
         final View mView;
         private TextView txtFilm;
         private TextView txtKeterangan;
         private ImageView coverImage;
         private CardView cardView;
-
         CustomViewHolder(View itemView) {
             super(itemView);
             mView = itemView;

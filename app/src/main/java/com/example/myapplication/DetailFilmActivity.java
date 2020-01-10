@@ -62,11 +62,11 @@ public class DetailFilmActivity extends AppCompatActivity {
                 insertData(film);
             }
 
-            private void insertData(final FilmModel wisata) {
+            private void insertData(final FilmModel film) {
                 new AsyncTask<Void, Void, Long>() {
                     @Override
                     protected Long doInBackground(Void... voids) {
-                        long status = db.favoriteDao().insertFav(wisata);
+                        long status = db.favoriteDao().insertFav(film);
                         return status;
                     }
 
@@ -80,7 +80,7 @@ public class DetailFilmActivity extends AppCompatActivity {
                         NotificationManager notif=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
                         Notification notify=new Notification.Builder
                                 (getApplicationContext()).setContentTitle("data telah masuk").setContentText("data telah masuk").
-                                setContentTitle("data telah masuk").setSmallIcon(R.drawable.ic_archive_black_24dp).build();
+                                setContentTitle("data telah masuk").setSmallIcon(R.drawable.ic_dehaze_black_24dp).build();
 
                         notify.flags |= Notification.FLAG_AUTO_CANCEL;
                         notif.notify(0, notify);

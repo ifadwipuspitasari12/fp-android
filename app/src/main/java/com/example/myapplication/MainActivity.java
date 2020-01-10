@@ -5,11 +5,12 @@ import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
-    CardView cvList, cvSimpan;
+    CardView cvList, cvSimpan, cvSetting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +19,15 @@ public class MainActivity extends AppCompatActivity {
 
         cvList = findViewById(R.id.cv_list);
         cvSimpan = findViewById(R.id.cv_simpan);
+        cvSetting = findViewById(R.id.cv_setting);
+
+        cvSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mIntent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
+                startActivity(mIntent);
+            }
+        });
 
         cvList.setOnClickListener(new View.OnClickListener() {
             @Override

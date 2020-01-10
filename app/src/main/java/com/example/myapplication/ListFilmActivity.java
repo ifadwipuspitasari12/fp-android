@@ -47,7 +47,7 @@ public class ListFilmActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<FilmModel>> call, Throwable t) {
              //   progressDoalog.dismiss();
-                Toast.makeText(ListFilmActivity.this, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ListFilmActivity.this, "Koneksi ada terputus", Toast.LENGTH_SHORT).show();
             }
         });
     }
